@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Imantė Balinskė – Susipažinimas (vienas blokas, grid)</title>
+    <style>
+  :root{
+    --ld-purple:#5A2D7F; --ld-magenta:#B40084; --ld-teal:#83AFB4; --ld-yellow:#C6BD00;
+    --ld-aqua:#4AC5BB; --ld-ink:#3C3C3C; --ld-cream:#FBF9F0;
+    --shadow:0 10px 24px rgba(41,53,55,.12),0 2px 6px rgba(41,53,55,.08);
+    --font: Inter, Arial, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);color:var(--ld-ink);background:linear-gradient(180deg,#fff 0,var(--ld-cream) 80%);}
+
+  /* Top bar */
+  .topbar{position:sticky;top:0;z-index:20;display:flex;flex-direction:column;background:linear-gradient(90deg,var(--ld-purple),var(--ld-magenta));color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.15)}
+  .toprow{display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img.logo{height:46px;width:auto}
+  .identity{line-height:1}
+  .identity strong{font-weight:800}
+  .identity span{font-size:12px;opacity:.9}
+  .actions{display:flex;gap:10px}
+  .actions a{padding:8px 14px;border-radius:999px;border:1px solid var(--ld-teal);color:var(--ld-teal);text-decoration:none;font-weight:700}
+  .actions a:hover{background:var(--ld-teal);color:#fff}
+
+  /* Ticker */
+  .tickerbar{overflow:hidden;white-space:nowrap;background:rgba(255,255,255,.08);padding:6px 0}
+  .tickerbar .track{display:inline-block;animation:scroll 22s linear infinite}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin:0 6px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13px}
+  @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  .container{max-width:1100px;margin:0 auto;padding:28px 18px 40px}
+  .quick-nav{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 16px}
+  .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--ld-teal),var(--ld-aqua));border:none}
+  .btn.outline{background:transparent;color:#fff;border:2px solid #fff}
+  .btn.alt{background:transparent;color:var(--ld-teal);border:2px solid var(--ld-teal)}
+
+  /* ===== VIENAS DIDELIS HERO BLOKAS (apima LONGFORM) ===== */
+  .hero{position:relative;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);isolation:isolate}
+  /* judantis žalsvai melsvas fonas */
+  .hero::before{
+    content:""; position:absolute; inset:-30% -10%;
+    background:
+      radial-gradient(60% 70% at 20% 30%, rgba(131,175,180,.9), transparent 70%),
+      radial-gradient(60% 70% at 80% 70%, rgba(74,197,187,.85), transparent 70%),
+      linear-gradient(135deg, var(--ld-teal), var(--ld-aqua));
+    filter:saturate(110%); animation:blob 16s ease-in-out infinite alternate; z-index:0;
+  }
+  @keyframes blob{0%{transform:translate3d(-2%,-2%,0) scale(1)}100%{transform:translate3d(2%,2%,0) scale(1.05)}}
+  @media (prefers-reduced-motion: reduce){ .hero::before{animation:none} }
+
+  /* dalelės virš fono */
+  .hero-canvas{position:absolute; inset:0; z-index:1; pointer-events:none; mix-blend-mode:soft-light;}
+
+  /* lenta su turiniu */
+  .board{
+    position:relative; z-index:2;
+    margin:14px; padding:18px;
+    border-radius:22px;
+    background:linear-gradient(135deg);
+    color:#fff; box-shadow:0 14px 36px rgba(34,33,81,.18);
+  }
+
+  /* H1 – spalvotos raidės */
+  .color-letters .ch{display:inline-block;animation:hue 4.2s ease-in-out infinite}
+  @keyframes hue{0%{color:#fff;filter:hue-rotate(0)}50%{color:#FFE6F7;filter:hue-rotate(90deg)}100%{color:#fff;filter:hue-rotate(0)}}
+  .board h1{margin:2px 0 8px;font-size:clamp(26px,2.6vw,36px)}
+  .lead{margin:0 0 14px;color:rgba(255,255,255,.95);font-weight:600}
+
+  /* GRID su interaktyviais blokais (ex-Longform) */
+  .info-grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:12px;
+  }
+  /* bazinė plytelė */
+  .tile{
+    grid-column: span 6;  /* default 1/2 pločio */
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.25);
+    color:#fff; padding:14px 16px; border-radius:16px;
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+    transition:transform .18s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+    cursor:pointer;
+  }
+  .tile:hover{ transform: translateY(-2px); box-shadow:3 19px 54px rgba(0,0,0,.18);}
+  .tile h3{margin:0 0 6px; font-size:16px; color:#5A2D7F}
+  .tile p{margin:0; line-height:1.55}
+  .tile ul{margin:0; padding-left:18px; line-height:1.5}
+
+  /* pločio variantai */
+  .tile.wide{ grid-column: span 12; }
+  .tile.third{ grid-column: span 4; }
+
+  /* ACTIVE – pakeičia spalvą pagal data-tone */
+  .tile[data-tone="teal"].active  { background:linear-gradient(135deg, var(--ld-teal), var(--ld-aqua));   border-color:transparent; }
+  .tile[data-tone="vio"].active   { background:linear-gradient(135deg, var(--ld-purple), var(--ld-magenta)); border-color:transparent; }
+  .tile[data-tone="gold"].active  { background:linear-gradient(135deg, #ffe066, var(--ld-yellow)); color:#2b2b2b; border-color:transparent; }
+  .tile[data-tone="mint"].active  { background:linear-gradient(135deg, #e6fff8, var(--ld-aqua)); color:#17313A; border-color:transparent; }
+
+  /* prieinamumas – focus */
+  .tile:focus-visible{ outline:3px solid #fff; outline-offset:2px }
+
+  /* reveal visam blokui */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* responsive */
+  @media (max-width:1100px){ .container{padding-inline:16px} }
+  @media (max-width:900px){
+    .tile{ grid-column: span 12; }
+    .tile.third{ grid-column: span 12; }
+  }
+</style>
+</head>
+<body>
+<!-- TOP -->
+<header class="topbar">
+    <div class="toprow">
+        <div class="brand">
+            <img src="logo.png" alt="Logo" class="logo"/>
+            <div class="identity">
+                <strong>Imantė Balinskė</strong>
+                <span>Analitikė → IT kryptis | RPA, JS, BI, SQL</span>
+            </div>
+        </div>
+        <div class="actions">
+            <a href="mailto:imante.balinske@ld.lt">El. paštas</a>
+            <a href="tel:+37068294100">Skambinti</a>
+        </div>
+    </div>
+    <div class="tickerbar"><div class="track" id="tech-top-track">
+        <span class="chip">RPA · Power Automate</span>
+        <span class="chip">JavaScript (ES6+)</span>
+        <span class="chip">BI · Power BI · Qlik</span>
+        <span class="chip">SQL · REST</span>
+        <span class="chip">SAP · TIA</span>
+        <span class="chip">Git · Jira</span>
+        <span class="chip">VS Code · IntelliJ</span>
+    </div></div>
+</header>
+
+<main class="container">
+    <!-- Greiti mygtukai -->
+    <div class="quick-nav">
+        <a class="btn alt" href="index.html">← Grįžti į pagrindinį</a>
+        <a class="btn alt" href="Imante Balinske CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+    </div>
+
+    <!-- VIENAS BLOKAS: HERO + LONGFORM (grid) -->
+    <section class="hero reveal" id="hero">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+
+        <div class="board">
+            <h1 class="color-letters" id="title-hero" aria-label="Susipažinkime">Susipažinkime</h1>
+            <p class="lead">Analitinė ir empatiška, su stipriu procesų pajautimu – orientuota į IT kryptį per <strong>RPA</strong>, <strong>JS</strong> ir <strong>BI</strong>.</p>
+
+            <!-- GRID -->
+            <div class="info-grid" id="grid">
+                <!-- Intro -->
+                <button class="tile wide" data-tone="vio" aria-pressed="false">
+                    <h3>Mano kelias & motyvacija</h3>
+                    <p>Jau  <strong>3 metus</strong> dirbdama AB „Lietuvos draudime“ kaip analitikė, turėjau galimybę iš arti susipažinti su įmonės procesais, kultūra ir skaitmeniniais sprendimais. Būtent ši patirtis sustiprino mano įsitikinimą, kad noriu savo karjerą kryptingai sieti su IT sritimi. </p>
+                </button>
+                <!-- Patirtis -->
+                <button class="tile" data-tone="teal" aria-pressed="false">
+                    <h3>Patirtis</h3>
+                    <p><strong> Turiu 10+ metų</strong> patirtį vadovaujant projektams ir žmonėms HR bei analitikoje, todėl gebu matyti tiek procesų, tiek žmonių poreikius. Analitiniai įgūdžiai, kruopštumas, komunikacija ir gebėjimas spręsti problemas man padeda rasti efektyvius sprendimus kasdienėje veikloje. </p>
+                </button>
+
+                <!-- Studijos/Technikos -->
+                <button class="tile" data-tone="teal" aria-pressed="false">
+                    <h3>Techninės žinios</h3>
+                    <p><strong>Pastaraisiais metais aktyviai gilinu IT žinias</strong> baigiau <strong>JavaScript developer programą, taip pat RPA mokymus (Power Platform, Power Automate).</strong> Tai suteikė ne tik techninių įgūdžių, bet ir užtikrino, kad galiu greitai prisitaikyti prie naujų sistemų.</p>
+                </button>
+
+
+                <!-- Planas -->
+                <button class="tile wide" data-tone="vio" aria-pressed="false">
+                    <h3>2 metų planas</h3>
+                    <p>Per artimiausius dvejus metus planuoju kryptingai pereiti į IT departamentą ir esu pasirengusi įdėti pastangas bei energiją, kad šis pokytis būtų sėkmingas tiek man, tiek įmonei. Tikiu, kad mano unikali patirtis – derinanti HR, analitiką ir projektų valdymą – leistų greičiau ir efektyviau perimti pozicijos niuansus.
+                        Esu motyvuota, smalsi ir nuoširdžiai tikiu, kad galėčiau būti vertinga IT komandai, padedama sujungti technologijas, procesus ir žmones į vieną darnų rezultatą.
+                    </p>
+                </button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+  // Top ticker loop
+  const topTrack = document.getElementById('tech-top-track');
+  if (topTrack) topTrack.innerHTML += topTrack.innerHTML;
+
+  // Reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Spalvotos raidės
+  function colorizeLetters(el){
+    if(!el) return;
+    const txt = el.textContent;
+    el.setAttribute('aria-label', txt);
+    el.innerHTML = '';
+    [...txt].forEach((ch,i)=>{
+      const span = document.createElement('span');
+      span.className = 'ch';
+      span.style.animationDelay = `${(i%12)*0.12}s`;
+      span.textContent = ch;
+      el.appendChild(span);
+    });
+  }
+  colorizeLetters(document.getElementById('title-hero'));
+
+  // Grid plytelės: perjungia spalvą (active) + aria-pressed
+  document.getElementById('grid').addEventListener('click', (e)=>{
+    const tile = e.target.closest('.tile');
+    if(!tile) return;
+    const active = tile.classList.toggle('active');
+    tile.setAttribute('aria-pressed', String(active));
+  });
+
+  // Dalelės fone
+  (function particles(canvasId, opts={}){
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio||1,2);
+    let W,H,parts=[],raf,mouse={x:0,y:0};
+    const COLORS = ['#ffffff','rgba(255,255,255,.85)','rgba(255,255,255,.65)'];
+    const GLOW='rgba(180,0,132,.12)';
+
+    function resize(){
+      const rect = canvas.parentElement.getBoundingClientRect();
+      W=Math.floor(rect.width); H=Math.floor(rect.height);
+      canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px';
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+    function init(){
+      parts=[];
+      const count=Math.max(22, Math.floor(W*H/36000));
+      for(let i=0;i<count;i++){
+        parts.push({x:Math.random()*W,y:Math.random()*H,r:3+Math.random()*10,s:.3+Math.random()*1.2,a:Math.random()*Math.PI*2});
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle=GLOW; ctx.beginPath(); ctx.ellipse(W*0.65,H*0.2,180,60,0,0,Math.PI*2); ctx.fill();
+      const px=(mouse.x-W/2)/W, py=(mouse.y-H/2)/H;
+      parts.forEach(p=>{
+        p.x += Math.cos(p.a)*p.s*0.6 + px*0.6;
+        p.y += Math.sin(p.a)*p.s*0.6 + py*0.6;
+        p.a += 0.003 + p.s*0.002;
+        if(p.x<-20)p.x=W+20; if(p.x>W+20)p.x=-20;
+        if(p.y<-20)p.y=H+20; if(p.y>H+20)p.y=-20;
+        ctx.fillStyle=COLORS[(p.r>9)?0:(p.r>6)?1:2];
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      });
+      raf=requestAnimationFrame(draw);
+    }
+    function start(){ cancelAnimationFrame(raf); draw(); }
+    function stop(){ cancelAnimationFrame(raf); }
+
+    resize(); init(); start();
+    window.addEventListener('resize', ()=>{ resize(); init(); });
+    canvas.parentElement.addEventListener('pointermove', e=>{
+      const r=canvas.parentElement.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top;
+    });
+    document.addEventListener('visibilitychange', ()=>{ document.hidden?stop():start(); });
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){ stop(); }
+  })('heroCanvas');
+</script>
+</body>
+</html>

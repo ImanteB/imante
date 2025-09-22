@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Imantė Balinskė – Susipažinkime</title>
+    <style>
+:root{
+  --ld-purple:#5A2D7F; --ld-magenta:#B40084; --ld-teal:#83AFB4; --ld-cream:#FBF9F0; --ink:#293537;
+  --shadow:0 10px 24px rgba(41,53,55,.12),0 2px 6px rgba(41,53,55,.08);
+  --font: Inter, system-ui, Arial, sans-serif;
+  --accent1:var(--ld-purple); --accent2:var(--ld-magenta); --accent3:var(--ld-teal);
+}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:var(--font);color:var(--ink);background:linear-gradient(180deg,#fff 0,var(--ld-cream) 80%);}
+a{color:inherit}
+
+/* ======= HEADER ======= */
+header.topbar{position:sticky;top:0;z-index:10;display:flex;flex-direction:column;background:linear-gradient(90deg,var(--ld-purple),var(--ld-magenta));color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.15)}
+.toprow{display:flex;align-items:center;justify-content:space-between;padding:10px 24px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{height:46px;width:auto}
+.identity strong{font-size:18px;font-weight:800}
+.identity span{font-size:13px;opacity:.9}
+.actions{display:flex;gap:12px}
+.actions a{padding:8px 16px;border-radius:999px;border:1px solid var(--ld-teal);color:var(--ld-teal);text-decoration:none;font-weight:600;transition:.2s;color:#fff}
+.actions a:hover{background:var(--ld-teal);color:#fff}
+
+/* TECH ticker */
+.tickerbar{overflow:hidden;white-space:nowrap;background:rgba(255,255,255,.08);padding:8px 0;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}
+.tickerbar .track{display:inline-block;animation:scroll 22s linear infinite}
+.chip{display:inline-flex;align-items:center;padding:6px 12px;margin:0 6px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13px;font-weight:600}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ======= LAYOUT ======= */
+.container{max-width:1180px;margin:0 auto;padding:40px 20px}
+.grid{display:grid;gap:20px}
+.card{border-radius:24px;box-shadow:var(--shadow);background:#5F9DA4}
+
+/* ======= HERO ======= */
+.hero-wrap{position:relative;overflow:hidden;border-radius:28px;color:#fff;box-shadow:0 24px 60px rgba(28,44,54,.25)}
+/* teal gradient + animated grid */
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(1200px 600px at 100% -10%, rgba(255,255,255,.25), transparent 60%),
+  linear-gradient(135deg,var(--accent3) 0%, #5F9DA4 100%);
+}
+.hero-grid{position:absolute;inset:0;opacity:.14;background:
+  repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 28px),
+  repeating-linear-gradient(90deg, #fff 0 1px, transparent 1px 28px);
+  transform:translateZ(0); animation:slid 24s linear infinite}
+@keyframes slid{to{transform:translate3d(-56px,-56px,0)}}
+
+.hero{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;padding:28px}
+.hero .board{background:linear-gradient(135deg,var(--accent1) 0%, #7a3fb1 60%, var(--accent2) 100%);border-radius:28px;padding:22px;display:grid;grid-template-areas:"badge""title""cta""intro""skills";gap:12px}
+.board .badge{grid-area:badge;background:#C6BD00;color:var(--accent1);display:inline-block;padding:8px 12px;border-radius:999px;font-weight:700}
+.board h1{grid-area:title;margin:6px 0 0;font-size:clamp(26px,3.2vw,40px);line-height:1.15;color:#fff}
+.board .cta{grid-area:cta;display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;background:linear-gradient(135deg,var(--accent3),#5F9DA4);color:#fff;font-weight:800;border:0;cursor:pointer}
+.intro{grid-area:intro;display:none;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:14px}
+.intro.open{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.hero .dock{position:relative;background:rgba(255,255,255,.12);backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,.35);border-radius:24px;padding:16px;display:grid;place-items:center;min-height:320px}
+.dock h1{margin:0 0 10px;font-size:38px;font-weight:1000;opacity:.3}
+.icon-stack{position:relative;width:100%;height:100%}
+.ico{position:absolute;width:72px;aspect-ratio:1/1;border-radius:38px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;cursor:pointer;transition:transform .2s, box-shadow .2s}
+.ico img{width:70%;height:70%;opacity:.9;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+.ico:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+/* orbit positions + motion */
+.ico.r1{bottom:3%;left:1%;animation:float 7s ease-in-out infinite}
+.ico.r2{top:-220%;right:15%;animation:driftX 5s ease-in-out infinite alternate}
+.ico.r3{bottom:75%;left:10%;animation:float 7s ease-in-out infinite}
+.ico.r4{bottom:80%;right:24%;animation:driftX 9s ease-in-out infinite alternate}
+.ico.r5{top:34%;left:44%;animation:spin 28s linear infinite}
+
+.ico.r6{top:-185%;right:60%;animation:float 6s ease-in-out infinite;background:#FFECE7}
+.ico.r7{top:30%;right:10%;animation:driftX 8s ease-in-out infinite alternate;background:#FFECE7}
+.ico.r8{top:-260%;left:50%;animation:spin 28s linear infinite;background:#FFECE7}
+.ico.r9{bottom:220%;right:80%;animation:driftX 9s ease-in-out infinite alternate;background:#FFECE7}
+.ico.r10{top:1%;left:26%;animation:float 6s ease-in-out infinite;background:#FFECE7}
+
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+@keyframes driftX{0%{transform:translateX(0) rotate(0)}100%{transform:translateX(-16px) rotate(-6deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tooltip{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);white-space:nowrap;background:#FDAB89;color:#fff;font-size:12px;padding:6px 10px;border-radius:10px;opacity:0;pointer-events:none;transition:.15s}
+.ico:hover .tooltip{opacity:.95;transform:translateX(-50%) translateY(-6px)}
+
+/* skills in board */
+.skills-rail{border-top:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);padding:10px 0}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.acc-hero{text-align:left;border:1px solid rgba(255,255,255,.35);border-radius:9999px;background:rgba(255,255,255,.1);color:#fff;padding:10px 14px;font-weight:700;cursor:pointer}
+.acc-hero[aria-expanded="true"]{background:rgba(255,255,255,.22)}
+.pane-hero{display:none;color:#fff;padding:8px 4px 0}
+
+/* ======= CONTENT SECTIONS ======= */
+.section{margin-top:28px}
+.k-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.tile{background:#C6BD00;border:1px solid #e8eef0;border-radius:18px;padding:18px;box-shadow:var(--shadow);transition:transform .2s, box-shadow .2s;will-change:transform}
+.tile:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(41,53,55,.16)}
+.tile h4{margin:0 0 8px; color:#5A2D7F}
+.tile p{margin:0 0 6px;color:#FBF9F0}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.cta-row a{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;border:1px solid #cfe3e6;background:#FBF9F0
+;text-decoration:none;font-weight:700;color:#5F9DA4}
+.cta-row a:hover{background:#5F9DA4; color:#FBF9F0}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(16px);transition:.5s}
+.reveal.visible{opacity:1;transform:none}
+
+/* music toggle */
+.audio-btn{position:fixed;right:16px;bottom:16px;z-index:50;border:0;cursor:pointer;font-size:18px;line-height:1;padding:10px 14px;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--ld-teal),#5F9DA4);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.audio-btn:hover{transform:translateY(-1px);box-shadow:0 12px 22px rgba(0,0,0,.22)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(6,10,14,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+.modal.open{display:flex}
+.modal .box{max-width:720px;width:100%;background:#C6BD00;color:#1B4D5C; border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:20px; box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.modal .box h3{margin:0 0 10px}
+.modal .box p{margin:0 0 10px;color:#cfe}
+.modal .box .close{border:0;background:#0F5C55;color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer}
+
+/* responsive */
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr}
+  .dock{min-height:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="toprow">
+        <div class="brand">
+            <img src="logo.png" alt="Logo" class="logo"/>
+            <div class="identity">
+                <strong>Imantė Balinskė</strong>
+                <span>Analitikė → IT kryptis | RPA, JS, BI, SQL</span>
+            </div>
+        </div>
+        <div class="actions">
+            <a href="mailto:imante.balinske@ld.lt">El. paštas</a>
+            <a href="tel:+37068294100">Skambinti</a>
+        </div>
+    </div>
+    <div class="tickerbar">
+        <div class="track" id="tech-top-track">
+            <span class="chip">RPA · Power Automate</span>
+            <span class="chip">JavaScript (ES6+)</span>
+            <span class="chip">BI · Power BI · Qlik</span>
+            <span class="chip">SQL · REST</span>
+            <span class="chip">SAP · TIA</span>
+            <span class="chip">Git · Jira</span>
+            <span class="chip">VS Code · IntelliJ</span>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-wrap reveal">
+        <div class="hero-bg" id="parallax"></div>
+        <div class="hero-grid"></div>
+
+        <div class="hero">
+            <!-- LEFT: board -->
+            <div class="board">
+                <span class="badge">🎯 Siekis – Per 2 m. – į IT, jungiant žmones ir technologijas</span>
+                <h1>Empatiška ir analitiška, pasirengusi augti IT komandoje</h1>
+
+                <div class="cta-row">
+                    <button id="intro-toggle" class="btn" aria-expanded="false">Susipažinkime</button>
+                    <a href="susipazinimas.html" target="_blank" rel="noopener" class="btn outline">Motyvacinis laiškas</a>
+                    <a href="Imante Balinske CV.pdf" target="_blank" rel="noopener" class="btn">CV</a>
+                </div>
+
+                <div id="intro-panel" class="intro" role="region" aria-labelledby="intro-toggle">
+                    <p><strong>Kodėl rašau:</strong> siekiu per artimiausius <b>2 metus</b> kryptingai pereiti į IT. Mane motyvuoja technologijų kuriama vertė žmonėms ir verslui; ~4 m. "Lietuvos draudimo" kontekstas leidžia greitai startuoti.</p>
+                    <p><strong>Vizija:</strong> pradėti nuo RPA/produkto operacijų ar analitikos, augti į produkto savininkės / komandos vadovės vaidmenį.</p>
+                    <p><strong>Ką galiu šiandien:</strong> RPA (Power Automate), JavaScript (ES6+), BI (Power BI/Qlik), SQL, procesų analizė, reikalavimų struktūravimas, skaidri komunikacija.</p>
+                </div>
+
+                <div class="skills-rail">
+                    <div class="chips">
+                        <button class="acc-hero" aria-expanded="false">RPA (Power Automate)</button>
+                        <div class="pane-hero"><ul>
+                            <li>Procesų analizė ir automatizavimo galimybių identifikavimas</li>
+                            <li>Flow’ai: patvirtinimai, el. paštas, SharePoint/Excel</li>
+                            <li>Klaidų valdymas, monitoringas, dokumentavimas</li>
+                        </ul></div>
+
+                        <button class="acc-hero" aria-expanded="false">JavaScript (ES6+)</button>
+                        <div class="pane-hero"><ul>
+                            <li>DOM, fetch API, moduliai; UI komponentai</li>
+                            <li>Mini integracijos ir automatizacijos (Node/TS)</li>
+                            <li>Git/GitHub, VS Code aplinka</li>
+                        </ul></div>
+
+                        <button class="acc-hero" aria-expanded="false">BI (Power BI/Qlik/BO)</button>
+                        <div class="pane-hero"><ul>
+                            <li>Ataskaitos, vizualizacijos ir KPI skydeliai</li>
+                            <li>Transformacijos, DAX/Qlik skriptai</li>
+                            <li>Našumo optimizavimas, teisių valdymas</li>
+                        </ul></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: interactive dock -->
+            <aside class="dock tilt card">
+                <div></div>
+                <h1>Stiprybės · Silpnybės</h1>
+                <div class="icon-stack">
+                    <!-- RPA -->
+                    <button class="ico r1" data-action="open" data-topic="rpa" aria-label="Analitinis mąstymas ir informacijos struktūravimas">
+                        <img src="icons/strengths/analysis.svg" alt=""><span class="tooltip">Analitinis mąstymas </span>
+                    </button>
+                    <!-- JS -->
+                    <button class="ico r2" data-action="open" data-topic="js" aria-label="JavaScript">
+                        <img src="icons/strengths/quality.svg" alt=""><span class="tooltip">Patirtis</span>
+                    </button>
+                    <!-- BI -->
+                    <button class="ico r3" data-action="open" data-topic="bi" aria-label="BI / Power BI / Qlik">
+                        <img src="icons/strengths/adaptability.svg" alt=""><span class="tooltip">Adaptacija</span>
+                    </button>
+                    <!-- Motyvacija -->
+                    <button class="ico r4" data-action="link" data-href="motyvacija.html" aria-label="Motyvacija">
+                        <img src="icons/strengths/communication.svg" alt=""><span class="tooltip">Komunikacija </span>
+                    </button>
+                    <!-- Susipažinimas -->
+                    <button class="ico r5" data-action="link" data-href="susipazinimas.html" aria-label="Pilnas susipažinimas">
+                        <img src="icons/strengths/teamwork.svg" alt=""><span class="tooltip">Komandinis darbas</span>
+                    </button>
+                        <!-- RPA -->
+                        <button class="ico r6" data-action="open" data-topic="rpa" aria-label="RPA (Power Automate)">
+                            <img src="icons/weaknesses/context_switch.svg" alt=""><span class="tooltip">context_switch </span>
+                        </button>
+                        <!-- JS -->
+                        <button class="ico r7" data-action="open" data-topic="js" aria-label="JavaScript">
+                            <img src="icons/weaknesses/deep_coding.svg" alt=""><span class="tooltip">deep_coding</span>
+                        </button>
+                        <!-- BI -->
+                        <button class="ico r8" data-action="open" data-topic="bi" aria-label="BI / Power BI / Qlik">
+                            <img src="icons/weaknesses/perfectionism.svg" alt=""><span class="tooltip">perfectionism</span>
+                        </button>
+                        <!-- Motyvacija -->
+                        <button class="ico r9" data-action="link" data-href="motyvacija.html" aria-label="Motyvacija">
+                            <img src="icons/weaknesses/prioritization.svg" alt=""><span class="tooltip">prioritization </span>
+                        </button>
+                        <!-- Susipažinimas -->
+                        <button class="ico r10" data-action="link" data-href="susipazinimas.html" aria-label="Pilnas susipažinimas">
+                            <img src="icons/weaknesses/public_speaking.svg" alt=""><span class="tooltip">public_speaking</span>
+                    </button>
+
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ===== CONTENT CARDS ===== -->
+    <section class="section reveal">
+        <div class="k-cards">
+            <article class="tile tilt">
+                <h4>Greita vertė per RPA</h4>
+                <p>Identifikuoju žingsnius, kuriuos verta automatizuoti – skaičiuoju naudos/kaštų santykį, parenku Power Automate sprendimą.</p>
+            </article>
+            <article class="tile tilt">
+                <h4>Verslo–IT tiltas</h4>
+                <p>Poreikių suformulavimas, skaidrūs prioritetai, iteratyvus diegimas ir grįžtamasis ryšys – kad kiekviena iteracija kurtų vertę.</p>
+            </article>
+            <article class="tile tilt">
+                <h4>Duomenimis grįstas valdymas</h4>
+                <p>Power BI / Qlik skydeliai KPI stebėsenai; trumpi ciklai su vartotojais, kad dashboard’ai būtų naudojami, o ne „šiaip gražūs“.</p>
+            </article>
+        </div>
+    </section>
+
+
+
+</main>
+
+<!-- Muzika -->
+<audio id="bgm" src="music.mp3" preload="auto" loop></audio>
+<button id="bgmToggle" class="audio-btn" aria-pressed="false" aria-label="Įjungti muziką">🔇</button>
+
+<!-- Modal -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-describedby="m-body">
+    <div class="box">
+        <h3 id="m-title">Tema</h3>
+        <p id="m-body">Turinys…</p>
+        <div class="cta-row"><button class="close">Užverti</button></div>
+    </div>
+</div>
+
+<script>
+/* TECH juosta */
+(function(){ const top=document.getElementById('tech-top-track'); if(top){ top.innerHTML+=top.innerHTML; } })();
+
+/* Susipažinkime */
+const introBtn=document.getElementById('intro-toggle');
+const introPanel=document.getElementById('intro-panel');
+if(introBtn&&introPanel){ introBtn.addEventListener('click',()=>{ const open=introPanel.classList.toggle('open'); introBtn.setAttribute('aria-expanded',String(open)); }); }
+
+/* Skills akordeonai */
+document.querySelectorAll('.acc-hero').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const exp=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!exp));
+    const pane=btn.nextElementSibling;
+    pane.style.display=exp?'none':'block';
+  });
+});
+
+/* Scroll reveal */
+const io=new IntersectionObserver((e)=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('visible')),{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* 3D tilt */
+document.querySelectorAll('.tilt').forEach(el=>{
+  const r=8;
+  el.addEventListener('mousemove',e=>{
+    const b=el.getBoundingClientRect();
+    const x=(e.clientX-b.left)/b.width*2-1, y=(e.clientY-b.top)/b.height*2-1;
+    el.style.transform=`rotateX(${(-y*r)}deg) rotateY(${(x*r)}deg) translateY(-6px)`;
+  });
+  el.addEventListener('mouseleave',()=>{ el.style.transform='translateY(0)'; });
+});
+
+/* Parallax */
+const par=document.getElementById('parallax');
+window.addEventListener('mousemove',(e)=>{
+  const x=(e.clientX/window.innerWidth-.5)*8, y=(e.clientY/window.innerHeight-.5)*8;
+  par.style.transform=`translate(${x}px,${y}px)`;
+});
+
+/* Muzika */
+(function(){
+  const audio=document.getElementById('bgm');
+  const btn=document.getElementById('bgmToggle');
+  if(!audio||!btn) return;
+  const savedEnabled=localStorage.getItem('bgmEnabled');
+  const savedVolume=parseFloat(localStorage.getItem('bgmVolume')||'0.4');
+  audio.volume=Math.max(0,Math.min(savedVolume,1));
+  audio.muted=true;
+  audio.play().then(()=>setIcon(false)).catch(()=>{});
+  const unlock=()=>{ if(savedEnabled==='true'){ audio.muted=false; audio.play().catch(()=>{}); setIcon(true);} window.removeEventListener('pointerdown',unlock); window.removeEventListener('keydown',unlock); };
+  window.addEventListener('pointerdown',unlock,{once:true}); window.addEventListener('keydown',unlock,{once:true});
+  btn.addEventListener('click',async()=>{ if(audio.paused){ try{audio.muted=false; await audio.play(); setIcon(true); localStorage.setItem('bgmEnabled','true');}catch(e){} } else { audio.pause(); setIcon(false); localStorage.setItem('bgmEnabled','false'); }});
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden){ if(!audio.paused){ audio.pause(); btn.dataset.autoresume='1'; setIcon(false);} } else if(btn.dataset.autoresume==='1'){ audio.play().then(()=>setIcon(true)).catch(()=>{}); delete btn.dataset.autoresume; }});
+  function setIcon(p){ btn.textContent=p?'🔊':'🔇'; btn.setAttribute('aria-pressed',p?'true':'false'); }
+})();
+
+/* Interaktyvus ikonų dokas: modalas / nuorodos */
+const modal=document.getElementById('modal');
+const mTitle=document.getElementById('m-title');
+const mBody=document.getElementById('m-body');
+const closeBtn=modal.querySelector('.close');
+
+const topics={
+  rpa:{title:'Analitinis mąstymas ir informacijos struktūravimas', body:'Išgryninu problemą, atskiriu signalą nuo triukšmo ir paverčiu duomenis aiškiais sprendimais. Struktūruoju informaciją į tikslus, žingsnius, KPI ir rizikas, kad komanda galėtų greitai veikti.'},
+  js:{title:'JavaScript (ES6+)', body:'DOM, fetch API, moduliai, mini integracijos, UI komponentai. Praktiniai pavyzdžiai ir repo nuorodos – pasidalinsiu susitikime.'},
+  bi:{title:'BI (Power BI / Qlik)', body:'Dashboard’ai KPI stebėsenai, duomenų transformacijos, DAX/Qlik skriptai, prieigos modeliai ir našumas.'}
+};
+
+document.querySelectorAll('.icon-stack .ico').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const act=btn.dataset.action;
+    if(act==='link'){ const href=btn.dataset.href; if(href) window.open(href,'_blank','noopener'); return; }
+    const t=btn.dataset.topic; const d=topics[t]; if(!d) return;
+    mTitle.textContent=d.title; mBody.textContent=d.body;
+    modal.classList.add('open'); modal.focus();
+  });
+});
+
+closeBtn.addEventListener('click',()=>modal.classList.remove('open'));
+modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') modal.classList.remove('open'); });
+</script>
+</body>
+</html>
