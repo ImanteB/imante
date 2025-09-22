@@ -64,7 +64,7 @@ header.topbar{position:sticky;top:0;z-index:10;display:flex;flex-direction:colum
 .dock h1{margin:0 0 10px;font-size:38px;font-weight:1000;opacity:.3}
 .icon-stack{position:relative;width:100%;height:100%}
 .ico{position:absolute;width:72px;aspect-ratio:1/1;border-radius:38px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;cursor:pointer;transition:transform .2s, box-shadow .2s}
-.ico img{width:70%;height:70%;opacity:.9;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+/* .ico img removed */
 .ico:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,.25)}
 /* orbit positions + motion */
 .ico.r1{bottom:3%;left:1%;animation:float 7s ease-in-out infinite}
@@ -109,9 +109,7 @@ header.topbar{position:sticky;top:0;z-index:10;display:flex;flex-direction:colum
 .reveal{opacity:0;transform:translateY(16px);transition:.5s}
 .reveal.visible{opacity:1;transform:none}
 
-/* music toggle */
-.audio-btn{position:fixed;right:16px;bottom:16px;z-index:50;border:0;cursor:pointer;font-size:18px;line-height:1;padding:10px 14px;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--ld-teal),#5F9DA4);box-shadow:0 8px 18px rgba(0,0,0,.18)}
-.audio-btn:hover{transform:translateY(-1px);box-shadow:0 12px 22px rgba(0,0,0,.22)}
+/* (muzikos mygtuko stiliaus NĖRA – pašalinta) */
 
 /* modal */
 .modal{position:fixed;inset:0;background:rgba(6,10,14,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
@@ -215,43 +213,40 @@ header.topbar{position:sticky;top:0;z-index:10;display:flex;flex-direction:colum
                 <div class="icon-stack">
 
                     <button class="ico r1" data-action="open" data-topic="rpa" aria-label="Analitinis mąstymas ir informacijos struktūravimas">
-                        <img src="icons/strengths/analysis.svg" alt=""><span class="tooltip">Analitinis mąstymas </span>
+                        <span class="tooltip">Analitinis mąstymas</span>
                     </button>
                     <!-- JS -->
                     <button class="ico r2" data-action="open" data-topic="js" aria-label="Vadovavimo ir analitikos pagrindas">
-                        <img src="icons/strengths/quality.svg" alt=""><span class="tooltip">Patirtis</span>
+                        <span class="tooltip">Patirtis</span>
                     </button>
                     <!-- BI -->
                     <button class="ico r3" data-action="open" data-topic="bi" aria-label="Lankstumas ir gebėjimas mokytis">
-                        <img src="icons/strengths/adaptability.svg" alt=""><span class="tooltip">Prisitaikymas</span>
+                        <span class="tooltip">Prisitaikymas</span>
                     </button>
-                    <!-- Motyvacija -->
+                    <!-- Komunikacija -->
                     <button class="ico r4" data-action="open" data-topic="tp" aria-label="Tarpininkavimas tarp komandų">
-                        <img src="icons/strengths/communication.svg" alt=""><span class="tooltip">Komunikacija </span>
+                        <span class="tooltip">Komunikacija</span>
                     </button>
-                    <!-- Susipažinimas -->
+                    <!-- Iniciatyvumas -->
                     <button class="ico r5" data-action="open" data-topic="in" aria-label="Veiksmų ėmimasis ir idėjų siūlymas">
-                        <img src="icons/strengths/teamwork.svg" alt=""><span class="tooltip">Iniciatyvumas</span>
+                        <span class="tooltip">Iniciatyvumas</span>
                     </button>
-                        <!-- RPA -->
-                        <button class="ico r6" data-action="open" data-topic="rpa1" aria-label="Per didelis dėmesys detalėms">
-                            <img src="icons/weaknesses/context_switch.svg" alt=""><span class="tooltip">Perfekcionizmas</span>
-                        </button>
-                        <!-- JS -->
-                        <button class="ico r7" data-action="open" data-topic="js1" aria-label="Kalbėjimo įgūdžių stiprinimas">
-                            <img src="icons/weaknesses/deep_coding.svg" alt=""><span class="tooltip">Viešas kalbėjimas</span>
-                        </button>
-                        <!-- BI -->
-                        <button class="ico r8" data-action="open" data-topic="bi1" aria-label="Platesnės praktikos poreikis">
-                            <img src="icons/weaknesses/perfectionism.svg" alt=""><span class="tooltip">Technologijų gilinimas</span>
-                        </button>
-                        <!-- Motyvacija -->
-                        <button class="ico r9" data-action="open" data-topic="sd" aria-label="Didelių projektų patirties stoka">
-                            <img src="icons/weaknesses/prioritization.svg" alt=""><span class="tooltip">Sudėtingas programavimas</span>
-                        </button>
-                        <!-- Susipažinimas -->
-                        <button class="ico r10" data-action="open" data-topic="bp" aria-label="Balanso paieška">
-                            <img src="icons/weaknesses/public_speaking.svg" alt=""><span class="tooltip">Greitis vs. kruopštumas</span>
+
+                    <!-- Silpnybės -->
+                    <button class="ico r6" data-action="open" data-topic="rpa1" aria-label="Per didelis dėmesys detalėms">
+                        <span class="tooltip">Perfekcionizmas</span>
+                    </button>
+                    <button class="ico r7" data-action="open" data-topic="js1" aria-label="Kalbėjimo įgūdžių stiprinimas">
+                        <span class="tooltip">Viešas kalbėjimas</span>
+                    </button>
+                    <button class="ico r8" data-action="open" data-topic="bi1" aria-label="Platesnės praktikos poreikis">
+                        <span class="tooltip">Technologijų gilinimas</span>
+                    </button>
+                    <button class="ico r9" data-action="open" data-topic="sd" aria-label="Didelių projektų patirties stoka">
+                        <span class="tooltip">Sudėtingas programavimas</span>
+                    </button>
+                    <button class="ico r10" data-action="open" data-topic="bp" aria-label="Balanso paieška">
+                        <span class="tooltip">Greitis vs. kruopštumas</span>
                     </button>
 
                 </div>
@@ -277,13 +272,9 @@ header.topbar{position:sticky;top:0;z-index:10;display:flex;flex-direction:colum
         </div>
     </section>
 
-
-
 </main>
 
-<!-- Muzika -->
-<audio id="bgm" src="music.mp3" preload="auto" loop></audio>
-<button id="bgmToggle" class="audio-btn" aria-pressed="false" aria-label="Įjungti muziką">🔇</button>
+<!-- Muzikos elementai pašalinti -->
 
 <!-- Modal -->
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-describedby="m-body">
@@ -334,23 +325,6 @@ window.addEventListener('mousemove',(e)=>{
   const x=(e.clientX/window.innerWidth-.5)*8, y=(e.clientY/window.innerHeight-.5)*8;
   par.style.transform=`translate(${x}px,${y}px)`;
 });
-
-/* Muzika */
-(function(){
-  const audio=document.getElementById('bgm');
-  const btn=document.getElementById('bgmToggle');
-  if(!audio||!btn) return;
-  const savedEnabled=localStorage.getItem('bgmEnabled');
-  const savedVolume=parseFloat(localStorage.getItem('bgmVolume')||'0.4');
-  audio.volume=Math.max(0,Math.min(savedVolume,1));
-  audio.muted=true;
-  audio.play().then(()=>setIcon(false)).catch(()=>{});
-  const unlock=()=>{ if(savedEnabled==='true'){ audio.muted=false; audio.play().catch(()=>{}); setIcon(true);} window.removeEventListener('pointerdown',unlock); window.removeEventListener('keydown',unlock); };
-  window.addEventListener('pointerdown',unlock,{once:true}); window.addEventListener('keydown',unlock,{once:true});
-  btn.addEventListener('click',async()=>{ if(audio.paused){ try{audio.muted=false; await audio.play(); setIcon(true); localStorage.setItem('bgmEnabled','true');}catch(e){} } else { audio.pause(); setIcon(false); localStorage.setItem('bgmEnabled','false'); }});
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden){ if(!audio.paused){ audio.pause(); btn.dataset.autoresume='1'; setIcon(false);} } else if(btn.dataset.autoresume==='1'){ audio.play().then(()=>setIcon(true)).catch(()=>{}); delete btn.dataset.autoresume; }});
-  function setIcon(p){ btn.textContent=p?'🔊':'🔇'; btn.setAttribute('aria-pressed',p?'true':'false'); }
-})();
 
 /* Interaktyvus ikonų dokas: modalas / nuorodos */
 const modal=document.getElementById('modal');
