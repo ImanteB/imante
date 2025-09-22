@@ -213,45 +213,45 @@ header.topbar{position:sticky;top:0;z-index:10;display:flex;flex-direction:colum
                 <div></div>
                 <h1>Stiprybės · Silpnybės</h1>
                 <div class="icon-stack">
-                    <!-- RPA -->
+
                     <button class="ico r1" data-action="open" data-topic="rpa" aria-label="Analitinis mąstymas ir informacijos struktūravimas">
                         <img src="icons/strengths/analysis.svg" alt=""><span class="tooltip">Analitinis mąstymas </span>
                     </button>
                     <!-- JS -->
-                    <button class="ico r2" data-action="open" data-topic="js" aria-label="JavaScript">
+                    <button class="ico r2" data-action="open" data-topic="js" aria-label="Vadovavimo ir analitikos pagrindas">
                         <img src="icons/strengths/quality.svg" alt=""><span class="tooltip">Patirtis</span>
                     </button>
                     <!-- BI -->
-                    <button class="ico r3" data-action="open" data-topic="bi" aria-label="BI / Power BI / Qlik">
-                        <img src="icons/strengths/adaptability.svg" alt=""><span class="tooltip">Adaptacija</span>
+                    <button class="ico r3" data-action="open" data-topic="bi" aria-label="Lankstumas ir gebėjimas mokytis">
+                        <img src="icons/strengths/adaptability.svg" alt=""><span class="tooltip">Prisitaikymas</span>
                     </button>
                     <!-- Motyvacija -->
-                    <button class="ico r4" data-action="link" data-href="motyvacija.html" aria-label="Motyvacija">
+                    <button class="ico r4" data-action="open" data-topic="tp" aria-label="Tarpininkavimas tarp komandų">
                         <img src="icons/strengths/communication.svg" alt=""><span class="tooltip">Komunikacija </span>
                     </button>
                     <!-- Susipažinimas -->
-                    <button class="ico r5" data-action="link" data-href="susipazinimas.html" aria-label="Pilnas susipažinimas">
-                        <img src="icons/strengths/teamwork.svg" alt=""><span class="tooltip">Komandinis darbas</span>
+                    <button class="ico r5" data-action="open" data-topic="in" aria-label="Veiksmų ėmimasis ir idėjų siūlymas">
+                        <img src="icons/strengths/teamwork.svg" alt=""><span class="tooltip">Iniciatyvumas</span>
                     </button>
                         <!-- RPA -->
-                        <button class="ico r6" data-action="open" data-topic="rpa" aria-label="RPA (Power Automate)">
-                            <img src="icons/weaknesses/context_switch.svg" alt=""><span class="tooltip">context_switch </span>
+                        <button class="ico r6" data-action="open" data-topic="rpa1" aria-label="Per didelis dėmesys detalėms">
+                            <img src="icons/weaknesses/context_switch.svg" alt=""><span class="tooltip">Perfekcionizmas</span>
                         </button>
                         <!-- JS -->
-                        <button class="ico r7" data-action="open" data-topic="js" aria-label="JavaScript">
-                            <img src="icons/weaknesses/deep_coding.svg" alt=""><span class="tooltip">deep_coding</span>
+                        <button class="ico r7" data-action="open" data-topic="js1" aria-label="Kalbėjimo įgūdžių stiprinimas">
+                            <img src="icons/weaknesses/deep_coding.svg" alt=""><span class="tooltip">Viešas kalbėjimas</span>
                         </button>
                         <!-- BI -->
-                        <button class="ico r8" data-action="open" data-topic="bi" aria-label="BI / Power BI / Qlik">
-                            <img src="icons/weaknesses/perfectionism.svg" alt=""><span class="tooltip">perfectionism</span>
+                        <button class="ico r8" data-action="open" data-topic="bi1" aria-label="Platesnės praktikos poreikis">
+                            <img src="icons/weaknesses/perfectionism.svg" alt=""><span class="tooltip">Technologijų gilinimas</span>
                         </button>
                         <!-- Motyvacija -->
-                        <button class="ico r9" data-action="link" data-href="motyvacija.html" aria-label="Motyvacija">
-                            <img src="icons/weaknesses/prioritization.svg" alt=""><span class="tooltip">prioritization </span>
+                        <button class="ico r9" data-action="open" data-topic="sd" aria-label="Didelių projektų patirties stoka">
+                            <img src="icons/weaknesses/prioritization.svg" alt=""><span class="tooltip">Sudėtingas programavimas</span>
                         </button>
                         <!-- Susipažinimas -->
-                        <button class="ico r10" data-action="link" data-href="susipazinimas.html" aria-label="Pilnas susipažinimas">
-                            <img src="icons/weaknesses/public_speaking.svg" alt=""><span class="tooltip">public_speaking</span>
+                        <button class="ico r10" data-action="open" data-topic="bp" aria-label="Balanso paieška">
+                            <img src="icons/weaknesses/public_speaking.svg" alt=""><span class="tooltip">Greitis vs. kruopštumas</span>
                     </button>
 
                 </div>
@@ -359,9 +359,16 @@ const mBody=document.getElementById('m-body');
 const closeBtn=modal.querySelector('.close');
 
 const topics={
-  rpa:{title:'Analitinis mąstymas ir informacijos struktūravimas', body:'Išgryninu problemą, atskiriu signalą nuo triukšmo ir paverčiu duomenis aiškiais sprendimais. Struktūruoju informaciją į tikslus, žingsnius, KPI ir rizikas, kad komanda galėtų greitai veikti.'},
-  js:{title:'JavaScript (ES6+)', body:'DOM, fetch API, moduliai, mini integracijos, UI komponentai. Praktiniai pavyzdžiai ir repo nuorodos – pasidalinsiu susitikime.'},
-  bi:{title:'BI (Power BI / Qlik)', body:'Dashboard’ai KPI stebėsenai, duomenų transformacijos, DAX/Qlik skriptai, prieigos modeliai ir našumas.'}
+  rpa:{title:'Analitinis mąstymas ir informacijos struktūravimas', body:'Greitai atskiriu esmę nuo detalių, struktūruoju informaciją į aiškius tikslus ir sprendimus.'},
+  js:{title:'Vadovavimo ir analitikos pagrindas', body:'Daugiau nei 10 metų vadovavimo ir analitikos patirtis leidžia matyti tiek procesus, tiek žmones bei efektyviai juos sujungti.'},
+  bi:{title:'Lankstumas ir gebėjimas mokytis', body:'Lengvai adaptuojuosi prie pokyčių, greitai įsisavinu naujas sistemas ir procesus.'},
+  tp:{title:'Tarpininkavimas tarp komandų', body:'Aiškiai perteikiu informaciją tarp skirtingų komandų, užtikrinu bendrą supratimą.'},
+  in:{title:'Veiksmų ėmimasis ir idėjų siūlymas', body:'Aktyviai ieškau galimybių tobulinti procesus, siūlau sprendimus ir imuosi atsakomybės juos įgyvendinti. Esu linkusi veikti nelaukdama nurodymų, todėl greičiau pasiekiami rezultatai.'},
+  rpa1:{title:'Per didelis dėmesys detalėms', body:'Kartais per daug dėmesio skiriu detalėms – mokausi labiau orientuotis į vertę ir greitį.'},
+  js1:{title:'Kalbėjimo įgūdžių stiprinimas', body:'Kalbėjimas prieš auditoriją dar nėra stiprioji pusė, bet nuolat praktikuojuosi.'},
+  bi1:{title:'Platesnės praktikos poreikis', body:'Esu susipažinusi su daugeliu IT įrankių ir platformų, tačiau siekiu gilinti praktinę patirtį konkrečiose technologijose, kad galėčiau dar efektyviau jas taikyti.'},
+  sd:{title:'Didelių projektų patirties stoka', body:'Dar neturiu daug patirties dideliuose IT projektuose, bet aktyviai mokausi ir gilinu žinias.'},
+  bp:{title:'Balanso paieška', body:'Kartais, siekdama labai kruopštaus rezultato, sugaištu daugiau laiko. Mokausi balansuoti tarp darbo greičio ir kokybės, kad pasiekčiau optimalų rezultatą.'}
 };
 
 document.querySelectorAll('.icon-stack .ico').forEach(btn=>{
